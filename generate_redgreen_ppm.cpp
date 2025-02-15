@@ -8,6 +8,7 @@ int generate_ppm(std::string output, int width, int height) {
     file << "P3\n" << width << " " << height << "\n255" << std::endl;
 
     for (float i = 0.0; i < height; i++ ) {
+        std::clog << "\rScanlines remaining: " << (height - i) << ' ' << std::flush;
         for (float j = 0.0; j < width; j++) {
             file << int(j / (width-1) * 255.999) << " " << int(i / (height-1) * 255.999) << " 0\n";
         }
