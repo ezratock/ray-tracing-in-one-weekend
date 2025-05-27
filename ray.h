@@ -17,7 +17,7 @@ public:
     const point3& origin() const;
     const vec3& direction() const;
 
-    vec3 at(double t);
+    vec3 at(double t) const;
 };
 
 #endif //RAY_TRACING_IN_ONE_WEEKEND_RAY_H

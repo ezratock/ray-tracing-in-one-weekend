@@ -11,7 +11,28 @@
 #include <iostream>
 #include <fstream>
 
+double hit_sphere(const point3& center, double radius, const ray& r) {
+    vec3 oc = center - r.origin();
+    auto a = r.direction().length_squared();
+    auto h = dot(r.direction(), oc);
+    auto c = oc.length_squared() - radius*radius;
+    auto discriminant = h*h - a*c;
+
+    if (discriminant < 0) {
+        return -1.0;
+    } else {
+        return (h - std::sqrt(discriminant)) / a;
+    }
+}
+
 color ray_color(const ray& r) {
+    auto t = hit_sphere(point3(0,0,-1), 0.5, r);
+    if (t > 0.0) {
+        vec3 N = unit_vector(r.at(t) - vec3(0,0,-1));
+        return 0.5*color(N.x()+1, N.y()+1, N.z()+1);
+    }
+
+    // background
     vec3 unit_direction = unit_vector(r.direction());
     auto a = 0.5*(unit_direction.y() + 1.0);
     return (1.0-a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
@@ -32,7 +53,7 @@ int raytrace(const std::string& output) {
     // Camera
     double focal_length = 1.0;
     double viewport_width = 3.5;
-    double viewport_height = viewport_width * image_height/image_width;
+    double viewport_height = viewport_width * (static_cast<double>(image_height)/image_width);
     point3 camera_center = {0, 0, 0};
 
     // Calculate the vectors across the horizontal and down the vertical viewport edges.
@@ -44,7 +65,7 @@ int raytrace(const std::string& output) {
     vec3 pixel_delta_v = viewport_v / image_height;
 
     // Calculate the location of the upper left pixel.
-    auto pixel00_loc = camera_center + point3{-viewport_width/2, viewport_height/2, focal_length} + pixel_delta_u/2 + pixel_delta_v/2;
+    auto pixel00_loc = camera_center + point3{-viewport_width/2, viewport_height/2, -focal_length} + pixel_delta_u/2 + pixel_delta_v/2;
 
     // Render
     file << "P3\n" << image_width << " " << image_height << "\n255\n";
