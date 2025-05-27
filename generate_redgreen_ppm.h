@@ -1,6 +1,6 @@
 #ifndef RAY_TRACING_IN_ONE_WEEKEND_GENERATE_REDGREEN_PPM_H
 #define RAY_TRACING_IN_ONE_WEEKEND_GENERATE_REDGREEN_PPM_H
 
-int generate_ppm(std::string output, int width, int height);
+int generate_ppm(const std::string& output, int width, int height);
 
 #endif //RAY_TRACING_IN_ONE_WEEKEND_GENERATE_REDGREEN_PPM_H

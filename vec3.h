@@ -16,7 +16,7 @@ public:
     double y() const { return e[1]; }
     double z() const { return e[2]; }
 
-    vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
+    vec3 operator-() const { return {-e[0], -e[1], -e[2]}; }
     double operator[](int i) const { return e[i]; }
     double& operator[](int i) { return e[i]; }
 
@@ -27,7 +27,7 @@ public:
         return *this;
     }
 
-    vec3& operator+=(const double t) {
+    vec3& operator*=(const double t) {
         e[0] *= t;
         e[1] *= t;
         e[2] *= t;
@@ -61,15 +61,15 @@ inline vec3 operator+(const vec3& u, const vec3& v) {
 }
 
 inline vec3 operator-(const vec3& u, const vec3& v) {
-    return vec3(u.x() - v.x(), u.y() - v.y(), u.z() - v.z());
+    return {u.x() - v.x(), u.y() - v.y(), u.z() - v.z()};
 }
 
 inline vec3 operator*(const vec3& u, const vec3& v) {
-    return vec3(u.x() * v.x(), u.y() * v.y(), u.z() * v.z());
+    return {u.x() * v.x(), u.y() * v.y(), u.z() * v.z()};
 }
 
 inline vec3 operator*(double t, const vec3& v) {
-    return vec3(t*v.x(), t*v.y(), t*v.z());
+    return {t*v.x(), t*v.y(), t*v.z()};
 }
 
 inline vec3 operator*(const vec3& v, double t) {
@@ -87,9 +87,9 @@ inline double dot(const vec3& u, const vec3& v) {
 }
 
 inline vec3 cross(const vec3& u, const vec3& v) {
-    return vec3(u.y() * v.z() - u.z() * v.y(),
+    return {u.y() * v.z() - u.z() * v.y(),
                 u.z() * v.x() - u.x() * v.z(),
-                u.x() * v.y() - u.y() * v.x());
+                u.x() * v.y() - u.y() * v.x()};
 }
 
 inline vec3 unit_vector(const vec3& v) {

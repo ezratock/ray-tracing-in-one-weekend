@@ -7,4 +7,6 @@ add_executable(ray_tracing_in_one_weekend main.cpp
         generate_redgreen_ppm.cpp
         generate_redgreen_ppm.h
         vec3.cpp
-        vec3.h)
+        vec3.h
+        color.h
+        ray.h)
