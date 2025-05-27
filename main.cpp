@@ -1,5 +1,6 @@
 #include <iostream>
 #include "generate_redgreen_ppm.h"
+#include "raytrace.h"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -11,6 +12,12 @@ int main(int argc, char* argv[]) {
             return 0;
         }
         return generate_ppm(argv[2], std::stoi(argv[3]), std::stoi(argv[4]));
+    } else if (strcmp(argv[1], "raytrace") == 0) {
+            if (argc != 3) {
+                std::cout << "Usage: generate_ppm <output>" << std::endl;
+                return 0;
+            }
+            return raytrace(argv[2]);
     } else {
         std::cout << "Invalid program argument." << std::endl;
         return 0;

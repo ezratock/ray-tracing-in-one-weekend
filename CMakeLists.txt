@@ -9,4 +9,11 @@ add_executable(ray_tracing_in_one_weekend main.cpp
         vec3.cpp
         vec3.h
         color.h
-        ray.h)
+        ray.h
+        ray.h
+        raytrace.cpp
+        raytrace.h
+        raytrace.cpp
+        raytrace.h
+        ray.cpp
+        color.cpp)
