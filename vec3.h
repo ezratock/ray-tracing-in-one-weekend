@@ -1,7 +1,6 @@
 #ifndef RAY_TRACING_IN_ONE_WEEKEND_VEC3_H
 #define RAY_TRACING_IN_ONE_WEEKEND_VEC3_H
 
-
 #include <complex>
 
 class vec3 {

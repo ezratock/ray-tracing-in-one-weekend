@@ -16,4 +16,13 @@ add_executable(ray_tracing_in_one_weekend main.cpp
         raytrace.cpp
         raytrace.h
         ray.cpp
-        color.cpp)
+        color.cpp
+        hittable.cpp
+        hittable.h
+        sphere.cpp
+        sphere.h
+        hittable_list.cpp
+        hittable_list.h
+        rtweekend.h
+        interval.cpp
+        interval.h)
